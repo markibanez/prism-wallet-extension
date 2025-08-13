@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/launch.json",
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Edge: Debug Extension (load dist)",
+      "type": "msedge",
+      "request": "launch",
+      "preLaunchTask": "Watch build to dist",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/packages/extension",
+      "runtimeArgs": [
+        "--disable-extensions-except=${workspaceFolder}/packages/extension/dist",
+        "--load-extension=${workspaceFolder}/packages/extension/dist"
+      ]
+    },
+    {
+      "name": "Edge: Attach to Extension",
+      "type": "msedge",
+      "request": "attach",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}/packages/extension"
+    }
+  ]
+}

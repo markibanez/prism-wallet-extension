@@ -17,6 +17,9 @@
     "url": "https://github.com/GemWallet/gemwallet-extension/issues"
   },
   "homepage": "https://github.com/GemWallet/gemwallet-extension#readme",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
   "peerDependencies": {
     "xrpl": "^3.1.0"
   }

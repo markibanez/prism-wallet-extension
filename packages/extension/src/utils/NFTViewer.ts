@@ -31,7 +31,11 @@ export const parseJSON = async (URL: string, NFTokenID: string): Promise<NFTData
 };
 
 const replaceIPFS = (inputStr: string): string => {
-  if (!inputStr.startsWith('ipfs://' || IPFSResolverPrefix) && !inputStr.startsWith('http')) {
+  const isIpfsScheme = inputStr.startsWith('ipfs://');
+  const isResolvedIpfs = inputStr.startsWith(IPFSResolverPrefix);
+  const isHttp = inputStr.startsWith('http');
+
+  if (!isIpfsScheme && !isResolvedIpfs && !isHttp) {
     return `${IPFSResolverPrefix}${inputStr}`;
   }
 

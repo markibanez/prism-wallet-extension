@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json.schemastore.org/tasks.json",
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install deps (root)",
+      "type": "shell",
+      "command": "pnpm install",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build extension",
+      "type": "shell",
+      "command": "pnpm -w --filter @gemwallet/extension build",
+      "problemMatcher": ["$tsc"],
+      "group": "build"
+    },
+    {
+      "label": "Start extension dev server",
+      "type": "shell",
+      "command": "pnpm -w --filter @gemwallet/extension dev",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "owner": "custom",
+          "pattern": [
+            {
+              "regexp": ".*",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*",
+            "endsPattern": "Local:   http://localhost:3000/"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Watch build to dist",
+      "type": "shell",
+      "command": "pnpm -w --filter @gemwallet/extension build:watch",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "owner": "custom",
+          "pattern": [
+            {
+              "regexp": ".*",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*",
+            "endsPattern": "built in"
+          }
+        }
+      ]
+    }
+  ]
+}

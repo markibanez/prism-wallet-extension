@@ -5,17 +5,17 @@
   "private": true,
   "repository": "https://github.com/GemWallet/gemwallet-extension.git",
   "scripts": {
-    "build": "yarn workspace @gemwallet/extension build",
-    "build:api:cdn": "yarn workspace @gemwallet/api build:cdn",
-    "build:api:npm": "yarn workspace @gemwallet/api build:npm",
-    "cypress": "yarn workspace @gemwallet/extension cypress:e2e",
+    "build": "pnpm -w --filter @gemwallet/constants build && pnpm -w --filter @gemwallet/extension build",
+    "build:api:cdn": "pnpm -w --filter @gemwallet/api build:cdn",
+    "build:api:npm": "pnpm -w --filter @gemwallet/api build:npm",
+    "cypress": "pnpm -w --filter @gemwallet/extension cypress:e2e",
     "lint": "eslint --cache --quiet --fix",
     "prepare": "husky install",
     "prettier": "prettier --write **/*.{js,ts,tsx}",
     "release:api:npm": "cd packages/api/dist && npm publish --access=public",
-    "start": "yarn workspace @gemwallet/extension dev",
-    "start:api": "yarn workspace @gemwallet/api start",
-    "test": "TZ=UTC yarn workspaces run test"
+    "start": "pnpm -w --filter @gemwallet/extension dev",
+    "start:api": "pnpm -w --filter @gemwallet/api start",
+    "test": "TZ=UTC pnpm -w -r test"
   },
   "author": "GemWallet",
   "bugs": {
@@ -44,6 +44,7 @@
   "engines": {
     "node": ">=20.11.1",
     "npm": ">=10.2.4",
-    "yarn": "^1.22.5"
-  }
+    "pnpm": ">=8.6.0"
+  },
+  "packageManager": "pnpm@9.7.1"
 }
